@@ -1,0 +1,31 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (nunca subir al repo)
+.env
+.env.local
+.env.*.local
+
+# Build / compilados
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Docker volumes (datos persistidos localmente)
+pg_emp_data/
+pg_nom_data/
+mongo_data/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
