@@ -244,14 +244,6 @@ npm run dev
 
 Este comando requiere que `nodemon` esté instalado en el entorno de desarrollo.
 
-## Persistencia y modelo de datos
-
-- **Empleados:** PostgreSQL con Sequelize. La tabla `empleados` contiene información personal y laboral, incluyendo salario, departamento y estado activo.
-- **Nómina:** PostgreSQL con Sequelize. La tabla `nominas` guarda un registro por empleado y período.
-- **Reclutamiento:** MongoDB con Mongoose. Se utilizan las colecciones `vacantes` y `candidatos`, con marcas de tiempo automáticas.
-
-Al iniciar, los servicios SQL ejecutan `sequelize.sync({ alter: true })` para ajustar el esquema al modelo. Esto resulta cómodo para una demostración, pero en producción conviene reemplazarlo por migraciones controladas.
-
 ## Estructura del proyecto
 
 ```text
@@ -275,22 +267,3 @@ Al iniciar, los servicios SQL ejecutan `sequelize.sync({ alter: true })` para aj
         ├── Dockerfile
         └── src/index.js
 ```
-
-## Consideraciones antes de usarlo en producción
-
-Este repositorio está preparado como base funcional y demostrativa. Antes de llevarlo a un entorno real sería importante:
-
-- Cambiar `JWT_SECRET` y no guardarlo directamente en `docker-compose.yml`.
-- Reemplazar los usuarios y contraseñas hardcodeados por un sistema de identidad y contraseñas almacenadas de forma segura.
-- Cambiar las contraseñas de ejemplo de las bases de datos.
-- Añadir validación de esquemas, manejo centralizado de errores y logs estructurados en los servicios.
-- Incorporar pruebas automatizadas y un pipeline de integración continua.
-- Usar migraciones de base de datos en vez de `sync({ alter: true })`.
-- Restringir la exposición pública de los puertos de las bases de datos y de los microservicios.
-- Añadir autorización por rol; actualmente el token valida la identidad, pero las rutas no limitan operaciones según `admin` o `rrhh`.
-- Configurar límites, timeouts y observabilidad para las llamadas entre servicios.
-
-## Estado actual
-
-El proyecto contiene una implementación funcional de referencia para una arquitectura SOA de RRHH. La prioridad actual es mostrar claramente la separación de dominios y el flujo completo desde el gateway hasta cada base de datos; los controles de seguridad y operación avanzada quedan como trabajo pendiente para una versión productiva.
-
